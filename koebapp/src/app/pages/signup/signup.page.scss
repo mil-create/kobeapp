@@ -1,0 +1,323 @@
+ion-content {
+  --background: transparent;
+}
+
+.auth-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #552583 0%, #FDB927 50%, #552583 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  pointer-events: none;
+  
+  .number-bg {
+    position: absolute;
+    font-size: 150px;
+    font-weight: bold;
+    color: white;
+    animation: pulse 2s infinite;
+    
+    &.left {
+      top: 80px;
+      left: 80px;
+    }
+    
+    &.right {
+      bottom: 80px;
+      right: 80px;
+      animation-delay: 1s;
+    }
+  }
+  
+  .mamba-text {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    opacity: 0.5;
+  }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px solid #FDB927;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.auth-header {
+  background: linear-gradient(90deg, #552583 0%, #FDB927 100%);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0.4;
+  }
+  
+  .jersey-number {
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    margin: 10px 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tagline {
+    color: #FDB927;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+  }
+}
+
+.auth-form {
+  padding: 32px;
+  
+  .form-item {
+    --background: #1a1a1a;
+    --border-color: #552583;
+    --border-width: 2px;
+    --border-radius: 12px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --inner-padding-end: 0;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    
+    &.ion-focused {
+      --border-color: #FDB927;
+    }
+    
+    ion-label {
+      color: #FDB927 !important;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    ion-input {
+      --color: white;
+      --placeholder-color: #666;
+      --padding-top: 8px;
+      --padding-bottom: 8px;
+    }
+  }
+  
+  .terms-check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    
+    ion-checkbox {
+      --border-color: #552583;
+      --background-checked: #FDB927;
+      --checkmark-color: #000;
+      margin: 0;
+    }
+    
+    ion-label {
+      color: #999;
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+  
+  .submit-btn {
+    --background: linear-gradient(90deg, #552583 0%, #FDB927 100%);
+    --border-radius: 12px;
+    height: 56px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    &:hover {
+      --background: linear-gradient(90deg, #6b2fa3 0%, #fdc947 100%);
+    }
+  }
+  
+  .toggle-auth {
+    text-align: center;
+    margin-top: 24px;
+    
+    p {
+      color: #999;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 0;
+    }
+    
+    ion-button {
+      --color: #FDB927;
+      font-weight: bold;
+      margin: 0;
+      text-transform: none;
+    }
+  }
+  
+  .quote-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #333;
+    
+    .quote {
+      color: #999;
+      font-size: 13px;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.5;
+      margin: 0 0 8px 0;
+    }
+    
+    .author {
+      color: #FDB927;
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  .champion-badge {
+    margin-top: 20px;
+    text-align: center;
+    color: #FDB927;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    
+    span:first-child,
+    span:last-child {
+      font-size: 24px;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+// Mobile (up to 767px)
+@media (max-width: 767px) {
+  .auth-container {
+    padding: 16px;
+  }
+
+  .background-overlay {
+    .number-bg {
+      font-size: 100px;
+      
+      &.left {
+        top: 40px;
+        left: 20px;
+      }
+      
+      &.right {
+        bottom: 40px;
+        right: 20px;
+      }
+    }
+    
+    .mamba-text {
+      font-size: 40px;
+      left: 20%;
+    }
+  }
+
+  .auth-header {
+    padding: 30px 20px;
+    
+    .jersey-number {
+      font-size: 48px;
+    }
+    
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .auth-form {
+    padding: 24px;
+    
+    .terms-check {
+      align-items: flex-start;
+      
+      ion-label {
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+// Tablet (768px to 1023px)
+@media (min-width: 768px) and (max-width: 1023px) {
+  .auth-container {
+    padding: 24px;
+  }
+  
+  .auth-card {
+    max-width: 500px;
+  }
+  
+  .background-overlay {
+    .number-bg {
+      font-size: 130px;
+      
+      &.left {
+        top: 60px;
+        left: 60px;
+      }
+      
+      &.right {
+        bottom: 60px;
+        right: 60px;
+      }
+    }
+    
+    .mamba-text {
+      font-size: 50px;
+    }
+  }
+}

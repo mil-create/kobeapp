@@ -1,13 +1,93 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="auth-container">
+    <!-- Background elements -->
+    <div class="background-overlay">
+      <div class="number-bg left">24</div>
+      <div class="number-bg right">8</div>
+      <div class="mamba-text">MAMBA</div>
+    </div>
+
+    <!-- Main card -->
+    <div class="auth-card">
+      <!-- Header -->
+      <div class="auth-header">
+        <div class="jersey-number">24</div>
+        <h1>Join the Legacy</h1>
+        <p class="tagline">MAMBA MENTALITY</p>
+      </div>
+
+      <!-- Form -->
+      <div class="auth-form">
+        <ion-item lines="none" class="form-item">
+          <ion-label position="stacked">Full Name</ion-label>
+          <ion-input 
+            type="text" 
+            [(ngModel)]="formData.name"
+            placeholder="Your name">
+          </ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="form-item">
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input 
+            type="email" 
+            [(ngModel)]="formData.email"
+            placeholder="mamba@lakers.com">
+          </ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="form-item">
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input 
+            type="password" 
+            [(ngModel)]="formData.password"
+            placeholder="••••••••">
+          </ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="form-item">
+          <ion-label position="stacked">Confirm Password</ion-label>
+          <ion-input 
+            type="password" 
+            [(ngModel)]="formData.confirmPassword"
+            placeholder="••••••••">
+          </ion-input>
+        </ion-item>
+
+        <div class="terms-check">
+          <ion-checkbox></ion-checkbox>
+          <ion-label>I agree to the Terms & Conditions</ion-label>
+        </div>
+
+        <ion-button 
+          expand="block" 
+          (click)="handleSubmit()" 
+          class="submit-btn"
+          strong="true">
+          START YOUR JOURNEY
+        </ion-button>
+
+        <div class="toggle-auth">
+          <p>
+            Already have an account?
+            <ion-button fill="clear" size="small" (click)="goToSignIn()">
+              Sign In
+            </ion-button>
+          </p>
+        </div>
+
+        <div class="quote-section">
+          <p class="quote">"The most important thing is to try and inspire people so that they can be great in whatever they want to do."</p>
+          <p class="author">- KOBE BRYANT</p>
+        </div>
+
+        <!-- Champion badge -->
+        <div class="champion-badge">
+          <span>⭐</span>
+          <span>5x NBA Champion</span>
+          <span>⭐</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
