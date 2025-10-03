@@ -1,0 +1,7 @@
+{
+  "name": "koebapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
