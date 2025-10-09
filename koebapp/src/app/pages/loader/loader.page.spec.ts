@@ -1,17 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 import { LoaderPage } from './loader.page';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-describe('LoaderPage', () => {
+describe('HomePage', () => {
   let component: LoaderPage;
   let fixture: ComponentFixture<LoaderPage>;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(), LoaderPage, CommonModule, FormsModule],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(LoaderPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
+  it('should create the HomePage', () => {
     expect(component).toBeTruthy();
   });
 });

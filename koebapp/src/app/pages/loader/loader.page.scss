@@ -1,0 +1,94 @@
+
+ion-content {
+  --background: linear-gradient(135deg, #3a0071, #f8b400);
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.start-btn {
+  --background: #f8b400;
+  --color: #000;
+  font-weight: bold;
+  border-radius: 22px;
+  font-size: 1.2rem;
+  padding: 12px 22px;
+  box-shadow: 0 0 20px rgba(248, 180, 0, 0.6);
+  transition: transform 0.2s;
+}
+
+.start-btn:active {
+  transform: scale(0.95);
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.kobe-loader {
+  position: relative;
+  width: 130px; 
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.light-ring {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top: 3px solid #f8b400;
+  border-right: 3px solid #f8b400;
+  filter: blur(2px);
+  animation: rotateRing 2s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo {
+  width: 160px; 
+  height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px #f8b400);
+  z-index: 2;
+}
+
+.loading-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #fff;
+  text-shadow: 0 0 8px #f8b400, 0 0 15px #ffcc00;
+  animation: glowPulse 9.5s ease-in-out infinite alternate;
+  margin-top: 24px;
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 8px #f8b400, 0 0 15px #ffcc00;
+  }
+  to {
+    text-shadow: 0 0 15px #ffffff, 0 0 30px #f8b400;
+  }
+}

@@ -1,0 +1,638 @@
+ion-content {
+  --background: #1a1a1a;
+}
+
+.home-container {
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: clamp(12px, 3vw, 20px);
+  padding-bottom: 80px;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(16px, 4vw, 20px);
+  
+  .header-left {
+    h1 {
+      font-size: clamp(24px, 6vw, 28px);
+      font-weight: bold;
+      color: white;
+      margin: 0 0 4px 0;
+    }
+    
+    .month {
+      color: #999;
+      font-size: clamp(13px, 3vw, 14px);
+      margin: 0;
+    }
+  }
+  
+  .settings-btn {
+    --color: white;
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+.calendar-week {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: clamp(16px, 4vw, 24px);
+  gap: clamp(4px, 1vw, 8px);
+  
+  .day-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(4px, 1.5vw, 8px);
+    padding: clamp(8px, 2vw, 12px) clamp(4px, 1vw, 8px);
+    border-radius: clamp(12px, 3vw, 16px);
+    background: #2a2a2a;
+    transition: all 0.3s ease;
+    min-width: 40px;
+    
+    .day-label {
+      font-size: clamp(10px, 2.5vw, 12px);
+      color: #999;
+      font-weight: 500;
+    }
+    
+    .day-number {
+      font-size: clamp(14px, 3.5vw, 16px);
+      color: white;
+      font-weight: 600;
+    }
+    
+    &.active {
+      background: linear-gradient(135deg, #552583, #FDB927);
+      
+      .day-label,
+      .day-number {
+        color: white;
+      }
+    }
+  }
+}
+
+ion-card.challenge-card {
+  --background: #EDFF7A;
+  border-radius: clamp(16px, 4vw, 20px);
+  margin: 0 0 clamp(16px, 4vw, 20px) 0;
+  overflow: hidden;
+  position: relative;
+  height: clamp(120px, 28vw, 140px);
+  box-shadow: none;
+  
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    max-width: 45%;
+  }
+  
+  ion-card-content {
+    padding: clamp(16px, 4vw, 20px);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .challenge-content {
+    max-width: 55%;
+    
+    h3 {
+      font-size: clamp(15px, 4vw, 18px);
+      font-weight: bold;
+      color: #000;
+      margin: 0 0 clamp(6px, 1.5vw, 8px) 0;
+      line-height: 1.2;
+    }
+    
+    p {
+      font-size: clamp(12px, 3vw, 14px);
+      color: #333;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+}
+
+.filter-tabs {
+  display: flex;
+  gap: clamp(8px, 2vw, 12px);
+  margin-bottom: clamp(16px, 4vw, 20px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab {
+    --border-radius: 20px;
+    height: clamp(32px, 8vw, 36px);
+    font-size: clamp(12px, 3vw, 14px);
+    font-weight: 600;
+    text-transform: none;
+    flex-shrink: 0;
+    min-width: 70px;
+    
+    &.active {
+      --background: white;
+      --color: #000;
+    }
+    
+    &:not(.active) {
+      --background: #2a2a2a;
+      --color: #999;
+    }
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 2.5vw, 12px);
+  margin-bottom: clamp(16px, 4vw, 20px);
+}
+
+ion-card.stat-card {
+  margin: 0;
+  border-radius: clamp(16px, 4vw, 20px);
+  box-shadow: none;
+  
+  ion-card-content {
+    padding: clamp(16px, 4vw, 20px);
+  }
+  
+  &.steps-card {
+    --background: #C8B6FF;
+    
+    .stat-icon {
+      font-size: clamp(24px, 6vw, 28px);
+      margin-bottom: clamp(8px, 2vw, 12px);
+    }
+    
+    .stat-value {
+      font-size: clamp(28px, 7vw, 32px);
+      font-weight: bold;
+      color: #000;
+      margin-bottom: clamp(2px, 1vw, 4px);
+    }
+    
+    .stat-label {
+      font-size: clamp(12px, 3vw, 14px);
+      color: #333;
+      font-weight: 600;
+      margin-bottom: clamp(10px, 2.5vw, 12px);
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: clamp(3px, 1vw, 4px);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      
+      .progress-fill {
+        height: 100%;
+        background: #552583;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+    }
+  }
+  
+  &.goals-card {
+    --background: #C8B6FF;
+    position: relative;
+    
+    .goals-icon {
+      font-size: clamp(20px, 5vw, 24px);
+      margin-bottom: clamp(6px, 1.5vw, 8px);
+    }
+    
+    h4 {
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: bold;
+      color: #000;
+      margin: 0 0 clamp(4px, 1vw, 6px) 0;
+    }
+    
+    .goals-text {
+      font-size: clamp(10px, 2.5vw, 12px);
+      color: #333;
+      margin: 0;
+      line-height: 1.4;
+      max-width: 60%;
+    }
+    
+    .progress-circle {
+      position: absolute;
+      bottom: clamp(12px, 3vw, 15px);
+      right: clamp(12px, 3vw, 15px);
+      width: clamp(40px, 10vw, 50px);
+      height: clamp(40px, 10vw, 50px);
+      
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+
+.calories-summary {
+  display: flex;
+  justify-content: space-between;
+  padding: clamp(16px, 4vw, 20px);
+  background: #2a2a2a;
+  border-radius: clamp(16px, 4vw, 20px);
+  margin-bottom: clamp(16px, 4vw, 20px);
+  gap: clamp(8px, 2vw, 12px);
+  
+  .calorie-item {
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 1.5vw, 8px);
+    flex: 1;
+    min-width: 0;
+    
+    .calorie-icon {
+      font-size: clamp(20px, 5vw, 24px);
+      flex-shrink: 0;
+    }
+    
+    .calorie-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      
+      .calorie-value {
+        font-size: clamp(12px, 3vw, 14px);
+        font-weight: bold;
+        color: white;
+        white-space: nowrap;
+      }
+      
+      .calorie-label {
+        font-size: clamp(9px, 2vw, 11px);
+        color: #999;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.workouts-section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 16px);
+  margin-top: clamp(16px, 4vw, 20px);
+}
+
+ion-card.workout-card {
+  margin: 0;
+  --background: #C8B6FF;
+  border-radius: clamp(16px, 4vw, 20px);
+  overflow: hidden;
+  position: relative;
+  min-height: clamp(130px, 30vw, 140px);
+  box-shadow: none;
+  
+  img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 45%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+  }
+  
+  ion-card-content {
+    padding: clamp(16px, 4vw, 20px);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .workout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
+    max-width: 55%;
+    
+    h3 {
+      font-size: clamp(16px, 4vw, 18px);
+      font-weight: bold;
+      color: #000;
+      margin: 0;
+      line-height: 1.2;
+    }
+  }
+  
+  .workout-duration {
+    background: white;
+    border-radius: 20px;
+    padding: clamp(3px, 1vw, 4px) clamp(10px, 2.5vw, 12px);
+    font-size: clamp(11px, 2.5vw, 12px);
+    font-weight: 600;
+    color: #000;
+    white-space: nowrap;
+    position: absolute;
+    top: clamp(16px, 4vw, 20px);
+    right: clamp(16px, 4vw, 20px);
+  }
+  
+  .workout-details {
+    max-width: 55%;
+    
+    .workout-exercises {
+      font-size: clamp(10px, 2.5vw, 12px);
+      color: #333;
+      margin: 0 0 clamp(10px, 2.5vw, 12px) 0;
+      line-height: 1.4;
+    }
+  }
+  
+  .workout-calories {
+    font-size: clamp(11px, 2.5vw, 12px);
+    font-weight: 600;
+    color: #000;
+    margin-bottom: clamp(10px, 2.5vw, 12px);
+  }
+  
+  .workout-icons {
+    display: flex;
+    gap: clamp(3px, 1vw, 4px);
+    position: absolute;
+    bottom: clamp(16px, 4vw, 20px);
+    left: clamp(16px, 4vw, 20px);
+    
+    ion-button {
+      --padding-start: clamp(4px, 1vw, 6px);
+      --padding-end: clamp(4px, 1vw, 6px);
+      --background: rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
+      --color: #333;
+      height: clamp(32px, 8vw, 36px);
+      width: clamp(32px, 8vw, 36px);
+      
+      ion-icon {
+        font-size: clamp(16px, 4vw, 18px);
+      }
+    }
+  }
+}
+
+.bottom-nav-icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* ensures even vertical alignment */
+  padding: 6px 10px; /* thinner top/bottom padding */
+  background: #1a1a1a;
+  border-top: 1px solid #2a2a2a;
+  z-index: 100;
+  height: 56px; /* define consistent slim height */
+  
+  .nav-icon {
+    --color: #666;
+    --padding-start: 0;
+    --padding-end: 0;
+
+    &.active {
+      --color: #FDB927;
+    }
+
+    ion-icon {
+      font-size: 22px; /* smaller and cleaner */
+    }
+  }
+}
+
+
+// iPhone SE (375px and smaller)
+@media (max-width: 375px) {
+  .home-container {
+    padding: 12px;
+    padding-bottom: 75px;
+  }
+  
+  .calendar-week {
+    gap: 3px;
+    
+    .day-item {
+      padding: 8px 3px;
+      min-width: 38px;
+    }
+  }
+  
+  ion-card.challenge-card {
+    height: 110px;
+    
+    img {
+      max-width: 40%;
+    }
+    
+    .challenge-content {
+      max-width: 60%;
+    }
+  }
+  
+  .stats-grid {
+    gap: 8px;
+  }
+  
+  .calories-summary {
+    padding: 14px;
+    
+    .calorie-item {
+      gap: 6px;
+    }
+  }
+  
+  .workouts-section {
+    gap: 10px;
+  }
+  
+  ion-card.workout-card {
+    min-height: 120px;
+    
+    img {
+      width: 42%;
+    }
+    
+    .workout-header {
+      max-width: 58%;
+    }
+    
+    .workout-details {
+      max-width: 58%;
+    }
+  }
+}
+
+// Small phones (320px - 360px)
+@media (max-width: 360px) {
+  .home-header {
+    margin-bottom: 12px;
+  }
+  
+  .calendar-week {
+    margin-bottom: 12px;
+    gap: 2px;
+    
+    .day-item {
+      padding: 6px 2px;
+      min-width: 35px;
+      gap: 4px;
+    }
+  }
+  
+  ion-card.challenge-card {
+    height: 100px;
+    margin-bottom: 12px;
+  }
+  
+  .filter-tabs {
+    gap: 6px;
+    margin-bottom: 12px;
+    
+    .tab {
+      min-width: 60px;
+    }
+  }
+  
+  .stats-grid {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  
+  .calories-summary {
+    padding: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  
+  ion-card.workout-card {
+    min-height: 110px;
+  }
+}
+
+// Medium phones (376px - 414px)
+@media (min-width: 376px) and (max-width: 414px) {
+  .home-container {
+    padding: 14px;
+  }
+}
+
+// Large phones (415px+)
+@media (min-width: 415px) {
+  .home-container {
+    padding: 16px;
+  }
+}
+
+// Tablets (600px+)
+@media (min-width: 600px) {
+  .home-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Landscape orientation
+@media (max-height: 700px) and (orientation: landscape) {
+  .home-container {
+    padding: 10px 16px 70px 16px;
+  }
+  
+  .home-header {
+    margin-bottom: 12px;
+  }
+  
+  .calendar-week {
+    margin-bottom: 12px;
+  }
+  
+  ion-card.challenge-card {
+    height: 100px;
+    margin-bottom: 12px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .calories-summary {
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .workouts-section {
+    gap: 10px;
+  }
+  
+  ion-card.workout-card {
+    min-height: 110px;
+  }
+}
+
+// Very short landscape (iPhone SE landscape)
+@media (max-height: 500px) and (orientation: landscape) {
+  .home-container {
+    padding: 8px 16px 65px 16px;
+  }
+  
+  .home-header {
+    margin-bottom: 10px;
+  }
+  
+  .calendar-week {
+    margin-bottom: 10px;
+  }
+  
+  ion-card.challenge-card {
+    height: 90px;
+    margin-bottom: 10px;
+  }
+  
+  .stats-grid {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .calories-summary {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .workouts-section {
+    gap: 8px;
+  }
+  
+  ion-card.workout-card {
+    min-height: 100px;
+  }
+  
+  .bottom-nav-icons {
+    padding: 8px 16px;
+  }
+}

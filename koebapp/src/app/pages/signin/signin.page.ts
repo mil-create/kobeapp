@@ -39,6 +39,7 @@ export class SigninPage implements OnInit {
     } else {
       // Sign in logic
       alert('Welcome back, Champion! 🏆');
+      this.router.navigate(['/home']);
     }
   }
 

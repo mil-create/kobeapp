@@ -1,0 +1,152 @@
+<ion-content [fullscreen]="true">
+  <div class="home-container">
+    
+    <!-- Header -->
+    <div class="home-header">
+      <div class="header-left">
+        <h1>Your Activity</h1>
+        <p class="month">{{ currentMonth }}</p>
+      </div>
+      <ion-button fill="clear" class="settings-btn" (click)="openSettings()">
+        <ion-icon name="ellipse-horizontal"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Calendar Week -->
+    <div class="calendar-week">
+      <div class="day-item" 
+          *ngFor="let day of weekDays" 
+          [class.active]="day.isToday"
+          (click)="selectDay(day)">
+        <span class="day-label">{{ day.label }}</span>
+        <span class="day-number">{{ day.number }}</span>
+      </div>
+    </div>
+
+    <!-- Daily Challenge Card -->
+    <ion-card class="challenge-card">
+      <img [src]="dailyChallenge.image" alt="Challenge" />
+      <ion-card-content>
+        <div class="challenge-content">
+          <h3>Today's Challenge</h3>
+          <p>{{ dailyChallenge.text }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <ion-button fill="solid" size="small" class="tab active">All</ion-button>
+      <ion-button fill="clear" size="small" class="tab">Running</ion-button>
+      <ion-button fill="clear" size="small" class="tab">Hooping</ion-button>
+    </div>
+
+    <!-- Stats Cards Grid -->
+    <div class="stats-grid">
+      <ion-card class="stat-card steps-card">
+        <ion-card-content>
+          <div class="stat-icon">👟</div>
+          <div class="stat-value">{{ stats.steps }}</div>
+          <div class="stat-label">Steps</div>
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="(stats.steps / stats.stepsGoal) * 100"></div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="stat-card goals-card">
+        <ion-card-content>
+          <div class="goals-icon">🎯</div>
+          <h4>My Goals</h4>
+          <p class="goals-text">Keep it up, you can achieve your goals</p>
+          <div class="progress-circle">
+            <svg viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="3"/>
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="#FDB927"
+                    stroke-width="3"
+                    [attr.stroke-dasharray]="(stats.caloriesBurned / stats.caloriesTarget) * 100 + ', 100'"/>
+            </svg>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Calories Summary -->
+    <div class="calories-summary">
+      <div class="calorie-item">
+        <div class="calorie-icon">🔥</div>
+        <div class="calorie-info">
+          <span class="calorie-value">{{ stats.caloriesTarget }} Kcal</span>
+          <span class="calorie-label">Target</span>
+        </div>
+      </div>
+      <div class="calorie-item">
+        <div class="calorie-icon">💥</div>
+        <div class="calorie-info">
+          <span class="calorie-value">{{ stats.caloriesBurned }} Kcal</span>
+          <span class="calorie-label">Burned</span>
+        </div>
+      </div>
+      <div class="calorie-item">
+        <div class="calorie-icon">⚡</div>
+        <div class="calorie-info">
+          <span class="calorie-value">{{ stats.caloriesRemaining }} Kcal</span>
+          <span class="calorie-label">Remaining</span>
+        </div>
+      </div>
+    </div>
+ 
+
+    <!-- Workout Plans -->
+    <div class="workouts-section">
+      <ion-card 
+        class="workout-card" 
+        *ngFor="let workout of workouts"
+        (click)="startWorkout(workout)"
+        button="true">
+        <img [src]="workout.image" alt="Workout" />
+        <ion-card-content>
+          <div class="workout-header">
+            <h3>{{ workout.title }}</h3>
+            <div class="workout-duration">
+              <span>{{ workout.duration }}</span>
+            </div>
+          </div>
+          <div class="workout-details">
+            <p class="workout-exercises">{{ workout.exercises }}</p>
+            <div class="workout-calories">
+              <span class="calories-badge">{{ workout.calories }} calories</span>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  </div>
+</ion-content>
+
+
+    <!-- Bottom Nav Icons -->
+    <div class="bottom-nav-icons">
+      <ion-button fill="clear" class="nav-icon active" (click)="navigateToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToStats()">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToWorkouts()">
+        <ion-icon name="barbell-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToMerch()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToAccount()">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </div>
+

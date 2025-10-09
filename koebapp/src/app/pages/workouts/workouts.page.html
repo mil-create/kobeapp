@@ -1,0 +1,213 @@
+<ion-content [fullscreen]="true">
+  <div class="workouts-container">
+    
+    <!-- Header -->
+    <div class="workouts-header">
+      <h1>Training Programs</h1>
+      <p class="tagline">MAMBA MENTALITY WORKOUTS</p>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats-grid">
+      <div class="quick-stat">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <span class="stat-value">{{ quickStats.todayCompleted }}/{{ quickStats.todayTotal }}</span>
+        <span class="stat-label">Today</span>
+      </div>
+      <div class="quick-stat">
+        <ion-icon name="flame-outline"></ion-icon>
+        <span class="stat-value">{{ quickStats.totalCaloriesBurned }}</span>
+        <span class="stat-label">Calories</span>
+      </div>
+      <div class="quick-stat">
+        <ion-icon name="trophy-outline"></ion-icon>
+        <span class="stat-value">{{ quickStats.weeklyStreak }}</span>
+        <span class="stat-label">Streak</span>
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-scroll">
+      <ion-button 
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category.id"
+        (click)="selectCategory(category.id)"
+        fill="clear"
+        size="small">
+        <span class="category-icon">{{ category.icon }}</span>
+        {{ category.name }}
+      </ion-button>
+    </div>
+
+    <!-- Today's Workouts -->
+    <div class="section-header">
+      <h2>Today's Workouts</h2>
+      <span class="section-count">{{ filteredWorkouts.length }}</span>
+    </div>
+
+    <div class="workouts-list">
+      <ion-card 
+        class="workout-card" 
+        *ngFor="let workout of filteredWorkouts"
+        [class.completed]="workout.completed"
+        [class.in-progress]="workout.inProgress">
+        
+        <!-- Workout Header -->
+        <div class="workout-main" (click)="toggleWorkoutDetails(workout)">
+          <div class="workout-image">
+            <img [src]="workout.image" alt="{{ workout.title }}" />
+            <div class="status-badge" *ngIf="workout.completed">
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+            <div class="status-badge in-progress" *ngIf="workout.inProgress">
+              <ion-icon name="time-outline"></ion-icon>
+            </div>
+          </div>
+          
+          <div class="workout-content">
+            <div class="workout-header">
+              <h3>{{ workout.title }}</h3>
+              <ion-button fill="clear" size="small" class="expand-btn">
+                <ion-icon [name]="workout.isExpanded ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+              </ion-button>
+            </div>
+            
+            <p class="workout-subtitle">{{ workout.subtitle }}</p>
+            
+            <div class="workout-meta">
+              <span class="meta-item">
+                <ion-icon name="time-outline"></ion-icon>
+                {{ workout.duration }} min
+              </span>
+              <span class="meta-item">
+                <ion-icon name="flame-outline"></ion-icon>
+                {{ workout.calories }} cal
+              </span>
+              <span class="meta-item difficulty" [style.color]="getDifficultyColor(workout.difficulty)">
+                <ion-icon name="trophy-outline"></ion-icon>
+                {{ workout.difficulty }}
+              </span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container" *ngIf="workout.inProgress">
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="getProgressPercentage(workout)"></div>
+              </div>
+              <span class="progress-text">{{ getProgressPercentage(workout).toFixed(0) }}% Complete</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expanded Details -->
+        <div class="workout-details" *ngIf="workout.isExpanded">
+          <div class="exercises-header">
+            <h4>Exercises</h4>
+            <span>{{ workout.exercises.length }} exercises</span>
+          </div>
+          
+          <div class="exercises-list">
+            <div 
+              class="exercise-item" 
+              *ngFor="let exercise of workout.exercises"
+              [class.completed]="exercise.completed"
+              (click)="workout.inProgress && toggleExercise(workout, exercise)">
+              <div class="exercise-check">
+                <ion-icon [name]="exercise.completed ? 'checkmark-circle' : 'ellipse-outline'"></ion-icon>
+              </div>
+              <div class="exercise-info">
+                <span class="exercise-name">{{ exercise.name }}</span>
+                <span class="exercise-sets">{{ exercise.sets }} sets × {{ exercise.reps }} reps</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="workout-actions">
+            <ion-button 
+              *ngIf="!workout.inProgress && !workout.completed" 
+              expand="block" 
+              class="start-btn"
+              (click)="startWorkout(workout)">
+              <ion-icon name="play-circle-outline" slot="start"></ion-icon>
+              Start Workout
+            </ion-button>
+
+            <ion-button 
+              *ngIf="workout.inProgress" 
+              expand="block" 
+              class="complete-btn"
+              (click)="completeWorkout(workout)">
+              <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+              Complete Workout
+            </ion-button>
+
+            <ion-button 
+              *ngIf="workout.inProgress" 
+              expand="block" 
+              fill="outline"
+              class="cancel-btn"
+              (click)="cancelWorkout(workout)">
+              <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+              Cancel
+            </ion-button>
+
+            <ion-button 
+              *ngIf="workout.completed" 
+              expand="block" 
+              fill="outline"
+              class="completed-btn"
+              disabled>
+              <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+              Completed
+            </ion-button>
+          </div>
+        </div>
+      </ion-card>
+    </div>
+
+    <!-- Recommended Workouts -->
+    <div class="section-header" *ngIf="filteredRecommended.length > 0">
+      <h2>Recommended</h2>
+      <span class="section-count">{{ filteredRecommended.length }}</span>
+    </div>
+
+    <div class="recommended-list" *ngIf="filteredRecommended.length > 0">
+      <ion-card 
+        class="recommended-card" 
+        *ngFor="let workout of filteredRecommended"
+        (click)="toggleWorkoutDetails(workout)">
+        <img [src]="workout.image" alt="{{ workout.title }}" />
+        <ion-card-content>
+          <h4>{{ workout.title }}</h4>
+          <p>{{ workout.subtitle }}</p>
+          <div class="recommended-meta">
+            <span>{{ workout.duration }} min</span>
+            <span>•</span>
+            <span>{{ workout.calories }} cal</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav-icons">
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToStats()">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon active" (click)="navigateToWorkouts()">
+        <ion-icon name="barbell-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToMerch()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToAccount()">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

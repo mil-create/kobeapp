@@ -1,0 +1,681 @@
+ion-content {
+  --background: #1a1a1a;
+}
+
+.workouts-container {
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: clamp(12px, 3vw, 20px);
+  padding-bottom: 80px;
+}
+
+.workouts-header {
+  text-align: center;
+  padding: clamp(20px, 5vw, 40px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px);
+  
+  h1 {
+    font-size: clamp(28px, 7vw, 32px);
+    font-weight: bold;
+    color: white;
+    margin: 0 0 clamp(6px, 1.5vw, 8px) 0;
+  }
+  
+  .tagline {
+    color: #FDB927;
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0;
+  }
+}
+
+// Quick Stats Grid
+.quick-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 2vw, 10px);
+  margin-bottom: clamp(16px, 4vw, 20px);
+  
+  .quick-stat {
+    background: #2a2a2a;
+    border-radius: clamp(12px, 3vw, 16px);
+    padding: clamp(12px, 3vw, 16px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(4px, 1vw, 6px);
+    
+    ion-icon {
+      font-size: clamp(20px, 5vw, 24px);
+      color: #FDB927;
+    }
+    
+    .stat-value {
+      font-size: clamp(16px, 4vw, 18px);
+      font-weight: bold;
+      color: white;
+    }
+    
+    .stat-label {
+      font-size: clamp(9px, 2.2vw, 10px);
+      color: #999;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Category Scroll
+.category-scroll {
+  display: flex;
+  gap: clamp(6px, 1.5vw, 8px);
+  overflow-x: auto;
+  padding: clamp(8px, 2vw, 10px) 0;
+  margin-bottom: clamp(16px, 4vw, 20px);
+  -webkit-overflow-scrolling: touch;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  ion-button {
+    --background: #2a2a2a;
+    --color: #999;
+    --border-radius: 20px;
+    --padding-start: clamp(12px, 3vw, 16px);
+    --padding-end: clamp(12px, 3vw, 16px);
+    height: clamp(32px, 8vw, 36px);
+    font-size: clamp(12px, 3vw, 13px);
+    font-weight: 600;
+    flex-shrink: 0;
+    
+    &.active {
+      --background: white;
+      --color: #000;
+      
+      .category-icon {
+        transform: scale(1.1);
+      }
+    }
+    
+    .category-icon {
+      font-size: clamp(14px, 3.5vw, 16px);
+      margin-right: clamp(4px, 1vw, 6px);
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+// Section Header
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: clamp(12px, 3vw, 16px);
+  
+  h2 {
+    font-size: clamp(20px, 5vw, 22px);
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+  
+  .section-count {
+    background: #2a2a2a;
+    color: #FDB927;
+    font-size: clamp(11px, 2.7vw, 12px);
+    font-weight: 700;
+    padding: clamp(4px, 1vw, 6px) clamp(10px, 2.5vw, 12px);
+    border-radius: 12px;
+  }
+}
+
+// Workouts List
+.workouts-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 16px);
+  margin-bottom: clamp(24px, 6vw, 32px);
+}
+
+// Workout Card
+ion-card.workout-card {
+  margin: 0;
+  --background: #2a2a2a;
+  border-radius: clamp(16px, 4vw, 20px);
+  overflow: hidden;
+  border: 2px solid transparent;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  
+  &.in-progress {
+    border-color: #FDB927;
+  }
+  
+  &.completed {
+    border-color: #10b981;
+    opacity: 0.8;
+  }
+  
+  .workout-main {
+    display: flex;
+    gap: clamp(12px, 3vw, 16px);
+    padding: clamp(12px, 3vw, 16px);
+    cursor: pointer;
+    
+    .workout-image {
+      position: relative;
+      width: clamp(80px, 20vw, 100px);
+      height: clamp(80px, 20vw, 100px);
+      border-radius: clamp(12px, 3vw, 14px);
+      overflow: hidden;
+      flex-shrink: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(80%) contrast(1.1);
+      }
+      
+      .status-badge {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: clamp(24px, 6vw, 28px);
+        height: clamp(24px, 6vw, 28px);
+        background: #10b981;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        ion-icon {
+          font-size: clamp(16px, 4vw, 18px);
+          color: white;
+        }
+        
+        &.in-progress {
+          background: #FDB927;
+          animation: pulse 2s infinite;
+        }
+      }
+    }
+    
+    .workout-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 1.5vw, 8px);
+      
+      .workout-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        
+        h3 {
+          font-size: clamp(15px, 3.7vw, 18px);
+          font-weight: bold;
+          color: white;
+          margin: 0;
+          line-height: 1.2;
+        }
+        
+        .expand-btn {
+          --color: #999;
+          --padding-start: 4px;
+          --padding-end: 4px;
+          margin: 0;
+          
+          ion-icon {
+            font-size: clamp(18px, 4.5vw, 20px);
+          }
+        }
+      }
+      
+      .workout-subtitle {
+        font-size: clamp(11px, 2.7vw, 12px);
+        color: #999;
+        margin: 0;
+      }
+      
+      .workout-meta {
+        display: flex;
+        gap: clamp(10px, 2.5vw, 12px);
+        flex-wrap: wrap;
+        
+        .meta-item {
+          display: flex;
+          align-items: center;
+          gap: clamp(4px, 1vw, 5px);
+          font-size: clamp(11px, 2.7vw, 12px);
+          color: #999;
+          
+          ion-icon {
+            font-size: clamp(14px, 3.5vw, 16px);
+            color: #FDB927;
+          }
+          
+          &.difficulty {
+            font-weight: 600;
+          }
+        }
+      }
+      
+      .progress-container {
+        margin-top: clamp(6px, 1.5vw, 8px);
+        
+        .progress-bar {
+          height: clamp(4px, 1vw, 6px);
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 3px;
+          overflow: hidden;
+          margin-bottom: clamp(4px, 1vw, 6px);
+          
+          .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #552583, #FDB927);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+          }
+        }
+        
+        .progress-text {
+          font-size: clamp(10px, 2.5vw, 11px);
+          color: #FDB927;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  
+  // Expanded Details
+  .workout-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: clamp(12px, 3vw, 16px);
+    animation: slideDown 0.3s ease;
+    
+    .exercises-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: clamp(12px, 3vw, 16px);
+      
+      h4 {
+        font-size: clamp(14px, 3.5vw, 16px);
+        font-weight: bold;
+        color: white;
+        margin: 0;
+      }
+      
+      span {
+        font-size: clamp(11px, 2.7vw, 12px);
+        color: #999;
+        font-weight: 600;
+      }
+    }
+    
+    .exercises-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 2vw, 10px);
+      margin-bottom: clamp(16px, 4vw, 20px);
+      
+      .exercise-item {
+        display: flex;
+        align-items: center;
+        gap: clamp(10px, 2.5vw, 12px);
+        padding: clamp(10px, 2.5vw, 12px);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: clamp(10px, 2.5vw, 12px);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background: rgba(253, 185, 39, 0.1);
+        }
+        
+        &.completed {
+          .exercise-check ion-icon {
+            color: #10b981;
+          }
+          
+          .exercise-name {
+            text-decoration: line-through;
+            opacity: 0.6;
+          }
+        }
+        
+        .exercise-check {
+          flex-shrink: 0;
+          
+          ion-icon {
+            font-size: clamp(22px, 5.5vw, 24px);
+            color: #666;
+            transition: color 0.2s ease;
+          }
+        }
+        
+        .exercise-info {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: clamp(2px, 0.5vw, 4px);
+          
+          .exercise-name {
+            font-size: clamp(13px, 3.2vw, 14px);
+            color: white;
+            font-weight: 500;
+          }
+          
+          .exercise-sets {
+            font-size: clamp(11px, 2.7vw, 12px);
+            color: #999;
+          }
+        }
+      }
+    }
+    
+    .workout-actions {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 2vw, 10px);
+      
+      ion-button {
+        --border-radius: 12px;
+        height: clamp(42px, 10.5vw, 46px);
+        font-size: clamp(13px, 3.2vw, 14px);
+        font-weight: 600;
+        
+        &.start-btn {
+          --background: linear-gradient(90deg, #552583, #FDB927);
+        }
+        
+        &.complete-btn {
+          --background: #10b981;
+        }
+        
+        &.cancel-btn {
+          --color: #ef4444;
+          --border-color: #ef4444;
+        }
+        
+        &.completed-btn {
+          --background: transparent;
+          --color: #10b981;
+          --border-color: #10b981;
+          opacity: 0.6;
+        }
+        
+        ion-icon {
+          font-size: clamp(18px, 4.5vw, 20px);
+        }
+      }
+    }
+  }
+}
+
+// Recommended List
+.recommended-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 2.5vw, 12px);
+  margin-bottom: clamp(24px, 6vw, 32px);
+}
+
+ion-card.recommended-card {
+  margin: 0;
+  --background: #2a2a2a;
+  border-radius: clamp(14px, 3.5vw, 16px);
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  img {
+    width: 100%;
+    height: clamp(100px, 25vw, 120px);
+    object-fit: cover;
+    filter: grayscale(80%) contrast(1.1);
+  }
+  
+  ion-card-content {
+    padding: clamp(12px, 3vw, 14px);
+  }
+  
+  h4 {
+    font-size: clamp(13px, 3.2vw, 14px);
+    font-weight: bold;
+    color: white;
+    margin: 0 0 clamp(4px, 1vw, 6px) 0;
+  }
+  
+  p {
+    font-size: clamp(11px, 2.7vw, 12px);
+    color: #999;
+    margin: 0 0 clamp(8px, 2vw, 10px) 0;
+  }
+  
+  .recommended-meta {
+    display: flex;
+    gap: clamp(6px, 1.5vw, 8px);
+    font-size: clamp(10px, 2.5vw, 11px);
+    color: #FDB927;
+    font-weight: 600;
+  }
+}
+
+.bottom-nav-icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* ensures even vertical alignment */
+  padding: 6px 10px; /* thinner top/bottom padding */
+  background: #1a1a1a;
+  border-top: 1px solid #2a2a2a;
+  z-index: 100;
+  height: 56px; /* define consistent slim height */
+  
+  .nav-icon {
+    --color: #666;
+    --padding-start: 0;
+    --padding-end: 0;
+
+    &.active {
+      --color: #FDB927;
+    }
+
+    ion-icon {
+      font-size: 22px; /* smaller and cleaner */
+    }
+  }
+}
+
+
+// Animations
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// iPhone SE and small phones
+@media (max-width: 375px) {
+  .workouts-container {
+    padding: 12px;
+    padding-bottom: 75px;
+  }
+  
+  .quick-stats-grid {
+    gap: 6px;
+  }
+  
+  .category-scroll {
+    gap: 5px;
+  }
+  
+  .workouts-list {
+    gap: 10px;
+  }
+  
+  .recommended-list {
+    gap: 8px;
+  }
+}
+
+// Very small phones
+@media (max-width: 360px) {
+  .workouts-header {
+    padding: 16px 12px 12px 12px;
+  }
+  
+  .quick-stats-grid {
+    gap: 5px;
+  }
+  
+  ion-card.workout-card {
+    .workout-main {
+      padding: 10px;
+      gap: 10px;
+      
+      .workout-image {
+        width: 70px;
+        height: 70px;
+      }
+    }
+    
+    .workout-details {
+      padding: 10px;
+    }
+  }
+  
+  .recommended-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Tablets
+@media (min-width: 600px) {
+  .workouts-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// Desktop
+@media (min-width: 900px) {
+  .workouts-container {
+    max-width: 900px;
+  }
+  
+  .workouts-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .recommended-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Landscape orientation
+@media (max-height: 700px) and (orientation: landscape) {
+  .workouts-container {
+    padding: 10px 16px 70px 16px;
+  }
+  
+  .workouts-header {
+    padding: 16px 20px 12px 20px;
+  }
+  
+  .quick-stats-grid {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .category-scroll {
+    padding: 8px 0;
+    margin-bottom: 12px;
+  }
+  
+  .workouts-list {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  ion-card.workout-card {
+    .workout-main {
+      padding: 12px;
+    }
+    
+    .workout-details {
+      padding: 12px;
+      
+      .exercises-list {
+        margin-bottom: 12px;
+      }
+    }
+  }
+  
+  .recommended-list {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+// Very short landscape
+@media (max-height: 500px) and (orientation: landscape) {
+  .workouts-header {
+    padding: 12px 16px 10px 16px;
+  }
+  
+  .quick-stats-grid {
+    margin-bottom: 10px;
+  }
+  
+  .category-scroll {
+    margin-bottom: 10px;
+  }
+  
+  .workouts-list {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  ion-card.workout-card {
+    .workout-main {
+      padding: 10px;
+      
+      .workout-image {
+        width: 70px;
+        height: 70px;
+      }
+    }
+    
+    .workout-details {
+      padding: 10px;
+    }
+  }
+}

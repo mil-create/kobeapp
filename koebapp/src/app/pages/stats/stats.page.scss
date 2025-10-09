@@ -1,0 +1,687 @@
+ion-content {
+  --background: #1a1a1a;
+}
+
+.stats-container {
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: clamp(12px, 3vw, 20px);
+  padding-bottom: 80px;
+}
+
+.stats-header {
+  text-align: center;
+  padding: clamp(20px, 5vw, 40px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px);
+  
+  h1 {
+    font-size: clamp(28px, 7vw, 32px);
+    font-weight: bold;
+    color: white;
+    margin: 0 0 clamp(6px, 1.5vw, 8px) 0;
+  }
+  
+  .tagline {
+    color: #FDB927;
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0;
+  }
+}
+
+// Period Selector
+.period-selector {
+  display: flex;
+  gap: clamp(8px, 2vw, 12px);
+  justify-content: center;
+  margin-bottom: clamp(16px, 4vw, 20px);
+  
+  ion-button {
+    --color: #666;
+    --border-radius: 20px;
+    --padding-start: clamp(16px, 4vw, 20px);
+    --padding-end: clamp(16px, 4vw, 20px);
+    height: clamp(32px, 8vw, 36px);
+    font-size: clamp(12px, 3vw, 14px);
+    font-weight: 600;
+    
+    &.active {
+      --background: white;
+      --color: #000;
+    }
+  }
+}
+
+// Overview Stats Grid
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(8px, 2vw, 10px);
+  margin-bottom: clamp(16px, 4vw, 20px);
+}
+
+.stat-mini-card {
+  background: #2a2a2a;
+  border-radius: clamp(12px, 3vw, 16px);
+  padding: clamp(12px, 3vw, 16px);
+  text-align: center;
+  
+  &.purple { border-top: 3px solid #C8B6FF; }
+  &.orange { border-top: 3px solid #FDB927; }
+  &.green { border-top: 3px solid #10b981; }
+  &.blue { border-top: 3px solid #3b82f6; }
+  
+  ion-icon {
+    font-size: clamp(20px, 5vw, 24px);
+    color: #FDB927;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
+  }
+  
+  h3 {
+    font-size: clamp(18px, 4.5vw, 22px);
+    font-weight: bold;
+    color: white;
+    margin: 0 0 clamp(2px, 0.5vw, 4px) 0;
+  }
+  
+  p {
+    font-size: clamp(9px, 2.2vw, 10px);
+    color: #999;
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+// Graph Card
+ion-card.graph-card {
+  --background: #2a2a2a;
+  border-radius: clamp(16px, 4vw, 20px);
+  margin: 0 0 clamp(16px, 4vw, 20px) 0;
+  border: none;
+  box-shadow: none;
+  
+  ion-card-header {
+    padding: clamp(16px, 4vw, 20px);
+    padding-bottom: clamp(12px, 3vw, 16px);
+    
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      ion-card-subtitle {
+        color: #999;
+        font-size: clamp(10px, 2.5vw, 11px);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+      
+      ion-card-title {
+        color: white;
+        font-size: clamp(16px, 4vw, 18px);
+        font-weight: bold;
+      }
+      
+      ion-button {
+        --color: #999;
+        --padding-start: 8px;
+        --padding-end: 8px;
+      }
+    }
+  }
+  
+  ion-card-content {
+    padding: 0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px);
+  }
+}
+
+// Bar Chart
+.bar-chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: clamp(120px, 30vw, 150px);
+  gap: clamp(6px, 1.5vw, 8px);
+  margin-bottom: clamp(12px, 3vw, 16px);
+  
+  .bar-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(6px, 1.5vw, 8px);
+    
+    .bar-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      
+      .bar-fill {
+        width: 100%;
+        background: linear-gradient(180deg, #FDB927 0%, #552583 100%);
+        border-radius: clamp(4px, 1vw, 6px) clamp(4px, 1vw, 6px) 0 0;
+        position: relative;
+        min-height: 10%;
+        transition: height 0.3s ease;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 4px;
+        
+        .bar-value {
+          font-size: clamp(8px, 2vw, 9px);
+          color: #000;
+          font-weight: 700;
+        }
+      }
+    }
+    
+    .bar-label {
+      font-size: clamp(10px, 2.5vw, 11px);
+      color: #999;
+      font-weight: 600;
+    }
+  }
+}
+
+// Graph Details
+.graph-details {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: clamp(10px, 2.5vw, 12px);
+  padding: clamp(12px, 3vw, 16px);
+  margin-top: clamp(12px, 3vw, 16px);
+  
+  .detail-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 80px;
+    gap: clamp(8px, 2vw, 12px);
+    padding: clamp(8px, 2vw, 10px) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .detail-day {
+      font-size: clamp(12px, 3vw, 13px);
+      color: #FDB927;
+      font-weight: 600;
+    }
+    
+    .detail-steps {
+      font-size: clamp(12px, 3vw, 13px);
+      color: white;
+    }
+    
+    .detail-calories {
+      font-size: clamp(11px, 2.7vw, 12px);
+      color: #999;
+      text-align: right;
+    }
+  }
+}
+
+// Dual Card Row
+.dual-card-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 2.5vw, 12px);
+  margin-bottom: clamp(16px, 4vw, 20px);
+}
+
+ion-card.streak-mini-card,
+ion-card.heart-mini-card {
+  margin: 0;
+  border-radius: clamp(16px, 4vw, 20px);
+  border: none;
+  box-shadow: none;
+  
+  ion-card-content {
+    padding: clamp(16px, 4vw, 20px);
+    text-align: center;
+  }
+  
+  .mini-card-icon {
+    font-size: clamp(28px, 7vw, 32px);
+    margin-bottom: clamp(8px, 2vw, 10px);
+  }
+  
+  h3 {
+    font-size: clamp(24px, 6vw, 28px);
+    font-weight: bold;
+    color: white;
+    margin: 0 0 clamp(4px, 1vw, 6px) 0;
+  }
+  
+  p {
+    font-size: clamp(11px, 2.7vw, 12px);
+    color: #999;
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+ion-card.streak-mini-card {
+  --background: linear-gradient(135deg, #FDB927 0%, #f59e0b 100%);
+  
+  .mini-card-icon,
+  h3,
+  p {
+    color: #000;
+  }
+}
+
+ion-card.heart-mini-card {
+  --background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+}
+
+// Trend Card
+ion-card.trend-card {
+  --background: #2a2a2a;
+  border-radius: clamp(16px, 4vw, 20px);
+  margin: 0 0 clamp(20px, 5vw, 24px) 0;
+  border: none;
+  box-shadow: none;
+  
+  ion-card-header {
+    padding: clamp(16px, 4vw, 20px);
+    padding-bottom: clamp(12px, 3vw, 16px);
+    
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      ion-card-subtitle {
+        color: #999;
+        font-size: clamp(10px, 2.5vw, 11px);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+      
+      ion-card-title {
+        color: white;
+        font-size: clamp(16px, 4vw, 18px);
+        font-weight: bold;
+      }
+      
+      ion-button {
+        --color: #999;
+        --padding-start: 8px;
+        --padding-end: 8px;
+      }
+    }
+  }
+  
+  ion-card-content {
+    padding: 0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px);
+  }
+}
+
+.trend-graph {
+  .trend-line {
+    height: clamp(80px, 20vw, 100px);
+    margin-bottom: clamp(12px, 3vw, 16px);
+    
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .trend-labels {
+    display: flex;
+    justify-content: space-between;
+    
+    span {
+      font-size: clamp(10px, 2.5vw, 11px);
+      color: #999;
+      font-weight: 600;
+    }
+  }
+}
+
+.trend-details {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: clamp(10px, 2.5vw, 12px);
+  padding: clamp(12px, 3vw, 16px);
+  margin-top: clamp(12px, 3vw, 16px);
+  
+  .trend-item {
+    display: grid;
+    grid-template-columns: 70px 1fr 60px;
+    gap: clamp(8px, 2vw, 12px);
+    padding: clamp(8px, 2vw, 10px) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    align-items: center;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .trend-label {
+      font-size: clamp(12px, 3vw, 13px);
+      color: #FDB927;
+      font-weight: 600;
+    }
+    
+    .trend-value {
+      font-size: clamp(12px, 3vw, 13px);
+      color: white;
+    }
+    
+    .trend-change {
+      font-size: clamp(11px, 2.7vw, 12px);
+      color: #dc2626;
+      font-weight: 600;
+      text-align: right;
+      
+      &.positive {
+        color: #10b981;
+      }
+    }
+  }
+}
+
+// Section Header
+.section-header {
+  margin: clamp(24px, 6vw, 32px) 0 clamp(12px, 3vw, 16px) 0;
+  
+  h2 {
+    font-size: clamp(20px, 5vw, 22px);
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+}
+
+// Achievements List
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2.5vw, 12px);
+  margin-bottom: clamp(24px, 6vw, 32px);
+}
+
+ion-card.achievement-progress-card {
+  margin: 0;
+  --background: #2a2a2a;
+  border-radius: clamp(14px, 3.5vw, 16px);
+  border: none;
+  box-shadow: none;
+  
+  ion-card-content {
+    padding: clamp(14px, 3.5vw, 16px);
+  }
+  
+  .achievement-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 3vw, 16px);
+    
+    .achievement-icon {
+      font-size: clamp(28px, 7vw, 32px);
+      flex-shrink: 0;
+    }
+    
+    .achievement-info {
+      flex: 1;
+      
+      h4 {
+        font-size: clamp(13px, 3.2vw, 14px);
+        font-weight: bold;
+        color: white;
+        margin: 0 0 clamp(8px, 2vw, 10px) 0;
+      }
+      
+      .progress-bar-container {
+        height: clamp(6px, 1.5vw, 8px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        
+        .progress-bar-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #552583, #FDB927);
+          border-radius: 4px;
+          transition: width 0.5s ease;
+        }
+      }
+    }
+    
+    .achievement-percent {
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: bold;
+      color: #FDB927;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.bottom-nav-icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* ensures even vertical alignment */
+  padding: 6px 10px; /* thinner top/bottom padding */
+  background: #1a1a1a;
+  border-top: 1px solid #2a2a2a;
+  z-index: 100;
+  height: 56px; /* define consistent slim height */
+  
+  .nav-icon {
+    --color: #666;
+    --padding-start: 0;
+    --padding-end: 0;
+
+    &.active {
+      --color: #FDB927;
+    }
+
+    ion-icon {
+      font-size: 22px; /* smaller and cleaner */
+    }
+  }
+}
+
+
+// iPhone SE and small phones
+@media (max-width: 375px) {
+.stats-container {
+padding: 12px;
+padding-bottom: 75px;
+}
+.overview-grid {
+gap: 6px;
+}
+.stat-mini-card {
+padding: 10px 8px;
+}
+.bar-chart {
+gap: 4px;
+height: 110px;
+}
+.dual-card-row {
+gap: 8px;
+}
+.achievements-list {
+gap: 8px;
+}
+}
+// Very small phones
+@media (max-width: 360px) {
+.stats-header {
+padding: 16px 12px 12px 12px;
+}
+.period-selector {
+gap: 6px;
+margin-bottom: 12px;
+}
+.overview-grid {
+gap: 5px;
+margin-bottom: 12px;
+}
+ion-card.graph-card,
+ion-card.trend-card {
+margin-bottom: 12px;
+}
+.section-header {
+margin: 20px 0 10px 0;
+}
+.achievements-list {
+margin-bottom: 20px;
+}
+}
+// Tablets
+@media (min-width: 600px) {
+.stats-container {
+max-width: 600px;
+margin: 0 auto;
+}
+.overview-grid {
+gap: 12px;
+}
+}
+// Desktop
+@media (min-width: 900px) {
+.stats-container {
+max-width: 900px;
+}
+.overview-grid {
+grid-template-columns: repeat(4, 1fr);
+gap: 16px;
+}
+.dual-card-row {
+grid-template-columns: 1fr 1fr;
+}
+}
+// Landscape orientation
+@media (max-height: 700px) and (orientation: landscape) {
+.stats-container {
+padding: 10px 16px 70px 16px;
+}
+.stats-header {
+padding: 16px 20px 12px 20px;
+}
+.period-selector {
+margin-bottom: 12px;
+}
+.overview-grid {
+grid-template-columns: repeat(4, 1fr);
+gap: 8px;
+margin-bottom: 12px;
+}
+.stat-mini-card {
+padding: 10px;
+ion-icon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+p {
+  font-size: 9px;
+}
+}
+.bar-chart {
+height: 100px;
+gap: 5px;
+}
+ion-card.graph-card,
+ion-card.trend-card {
+margin-bottom: 12px;
+ion-card-header {
+  padding: 14px 16px 10px 16px;
+}
+
+ion-card-content {
+  padding: 0 16px 14px 16px;
+}
+}
+.dual-card-row {
+gap: 8px;
+margin-bottom: 12px;
+}
+.section-header {
+margin: 16px 0 10px 0;
+h2 {
+  font-size: 18px;
+}
+}
+.achievements-list {
+gap: 8px;
+margin-bottom: 16px;
+}
+ion-card.achievement-progress-card {
+ion-card-content {
+padding: 12px;
+}
+.achievement-header {
+  gap: 10px;
+  
+  .achievement-icon {
+    font-size: 24px;
+  }
+}
+}
+}
+// Very short landscape
+@media (max-height: 500px) and (orientation: landscape) {
+.stats-header {
+padding: 12px 16px 10px 16px;
+}
+.period-selector {
+margin-bottom: 10px;
+}
+.overview-grid {
+margin-bottom: 10px;
+}
+.bar-chart {
+height: 80px;
+}
+ion-card.graph-card,
+ion-card.trend-card {
+margin-bottom: 10px;
+}
+.dual-card-row {
+margin-bottom: 10px;
+}
+.section-header {
+margin: 12px 0 8px 0;
+}
+.achievements-list {
+margin-bottom: 12px;
+}
+}
+// Grid layouts for larger screens
+@media (min-width: 768px) {
+.bar-chart {
+gap: 10px;
+}
+.overview-grid {
+grid-template-columns: repeat(4, 1fr);
+}
+}
+// Animation for bars
+.bar-fill {
+animation: growBar 0.8s ease-out;
+}
+@keyframes growBar {
+from {
+height: 0%;
+}
+to {
+height: var(--final-height);
+}
+}

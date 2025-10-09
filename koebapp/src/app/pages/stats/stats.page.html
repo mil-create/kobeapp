@@ -1,0 +1,197 @@
+<ion-content [fullscreen]="true">
+  <div class="stats-container">
+    
+    <!-- Header -->
+    <div class="stats-header">
+      <h1>Your Progress</h1>
+      <p class="tagline">TRACK YOUR MAMBA MENTALITY</p>
+    </div>
+
+    <!-- Period Selector -->
+    <div class="period-selector">
+      <ion-button 
+        *ngFor="let period of periods" 
+        [class.active]="selectedPeriod === period.id"
+        (click)="selectPeriod(period.id)"
+        fill="clear"
+        size="small">
+        {{ period.label }}
+      </ion-button>
+    </div>
+
+    <!-- Overview Stats Grid -->
+    <div class="overview-grid">
+      <div class="stat-mini-card purple">
+        <ion-icon name="footsteps-outline"></ion-icon>
+        <h3>{{ weeklyStats.totalSteps | number }}</h3>
+        <p>Steps</p>
+      </div>
+
+      <div class="stat-mini-card orange">
+        <ion-icon name="flame-outline"></ion-icon>
+        <h3>{{ weeklyStats.totalCalories }}</h3>
+        <p>Calories</p>
+      </div>
+
+      <div class="stat-mini-card green">
+        <ion-icon name="barbell-outline"></ion-icon>
+        <h3>{{ weeklyStats.totalWorkouts }}</h3>
+        <p>Workouts</p>
+      </div>
+
+      <div class="stat-mini-card blue">
+        <ion-icon name="time-outline"></ion-icon>
+        <h3>{{ weeklyStats.totalMinutes }}</h3>
+        <p>Minutes</p>
+      </div>
+    </div>
+
+    <!-- Weekly Activity Graph -->
+    <ion-card class="graph-card">
+      <ion-card-header>
+        <div class="card-title-row">
+          <div>
+            <ion-card-subtitle>Weekly Activity</ion-card-subtitle>
+            <ion-card-title>Daily Steps</ion-card-title>
+          </div>
+          <ion-button fill="clear" size="small" (click)="toggleWeeklyDetails()">
+            <ion-icon [name]="showWeeklyDetails ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="bar-chart">
+          <div class="bar-item" *ngFor="let day of weeklyProgress">
+            <div class="bar-container">
+              <div class="bar-fill" [style.height.%]="getBarHeight(day.steps)">
+                <span class="bar-value" *ngIf="showWeeklyDetails">{{ day.steps }}</span>
+              </div>
+            </div>
+            <span class="bar-label">{{ day.day }}</span>
+          </div>
+        </div>
+        
+        <div class="graph-details" *ngIf="showWeeklyDetails">
+          <div class="detail-row" *ngFor="let day of weeklyProgress">
+            <span class="detail-day">{{ day.day }}</span>
+            <span class="detail-steps">{{ day.steps }} steps</span>
+            <span class="detail-calories">{{ day.calories }} cal</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Streak & Heart Rate Row -->
+    <div class="dual-card-row">
+      <ion-card class="streak-mini-card">
+        <ion-card-content>
+          <div class="mini-card-icon">🔥</div>
+          <h3>{{ weeklyStats.activeStreak }}</h3>
+          <p>Day Streak</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="heart-mini-card">
+        <ion-card-content>
+          <div class="mini-card-icon">❤️</div>
+          <h3>{{ weeklyStats.averageHeartRate }}</h3>
+          <p>Avg BPM</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Monthly Trend -->
+    <ion-card class="trend-card">
+      <ion-card-header>
+        <div class="card-title-row">
+          <div>
+            <ion-card-subtitle>Monthly Overview</ion-card-subtitle>
+            <ion-card-title>Progress Trend</ion-card-title>
+          </div>
+          <ion-button fill="clear" size="small" (click)="toggleTrendDetails()">
+            <ion-icon [name]="showTrendDetails ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="trend-graph">
+          <div class="trend-line">
+            <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+              <polyline
+                points="0,70 100,50 200,20 300,30"
+                fill="none"
+                stroke="url(#gradient)"
+                stroke-width="3"
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#552583;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FDB927;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <circle cx="0" cy="70" r="4" fill="#552583" />
+              <circle cx="100" cy="50" r="4" fill="#FDB927" />
+              <circle cx="200" cy="20" r="4" fill="#FDB927" />
+              <circle cx="300" cy="30" r="4" fill="#FDB927" />
+            </svg>
+          </div>
+          <div class="trend-labels">
+            <span *ngFor="let item of monthlyTrend">{{ item.label }}</span>
+          </div>
+        </div>
+        
+        <div class="trend-details" *ngIf="showTrendDetails">
+          <div class="trend-item" *ngFor="let item of monthlyTrend; let i = index">
+            <span class="trend-label">{{ item.label }}</span>
+            <span class="trend-value">{{ item.value | number }} steps</span>
+            <span class="trend-change" *ngIf="i > 0" [class.positive]="getTrendPercentage(i) > 0">
+              {{ getTrendPercentage(i) > 0 ? '+' : '' }}{{ getTrendPercentage(i).toFixed(1) }}%
+            </span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Achievements Progress -->
+    <div class="section-header">
+      <h2>Achievements</h2>
+    </div>
+
+    <div class="achievements-list">
+      <ion-card class="achievement-progress-card" *ngFor="let achievement of achievements">
+        <ion-card-content>
+          <div class="achievement-header">
+            <div class="achievement-icon">{{ achievement.icon }}</div>
+            <div class="achievement-info">
+              <h4>{{ achievement.title }}</h4>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" [style.width.%]="achievement.progress"></div>
+              </div>
+            </div>
+            <div class="achievement-percent">{{ achievement.progress }}%</div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav-icons">
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon active" (click)="navigateToStats()">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToWorkouts()">
+        <ion-icon name="barbell-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToMerch()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToAccount()">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

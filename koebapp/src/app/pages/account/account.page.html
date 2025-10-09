@@ -1,0 +1,125 @@
+<ion-content [fullscreen]="true">
+  <div class="account-container">
+    
+    <!-- Header -->
+    <div class="account-header">
+      <h1>Account Settings</h1>
+      <p class="tagline">MAMBA MENTALITY</p>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+      <div class="profile-avatar">
+        <img [src]="user.avatar" alt="Profile" />
+        <ion-button class="edit-avatar-btn" fill="clear" size="small">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </div>
+      <h2>{{ user.name }}</h2>
+      <p class="user-email">{{ user.email }}</p>
+    </div>
+
+    <!-- Settings List -->
+    <div class="settings-list">
+      
+      <!-- Account Settings -->
+      <ion-card class="settings-card">
+        <ion-card-header>
+          <h3>Account Settings</h3>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list lines="none">
+            <ion-item button (click)="editProfile()">
+              <ion-icon name="person-outline" slot="start"></ion-icon>
+              <ion-label>Edit Profile</ion-label>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-item>
+            
+            <ion-item button (click)="changePassword()">
+              <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+              <ion-label>Change Password</ion-label>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Preferences -->
+      <ion-card class="settings-card">
+        <ion-card-header>
+          <h3>Preferences</h3>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-icon name="notifications-outline" slot="start"></ion-icon>
+              <ion-label>Notifications</ion-label>
+              <ion-toggle slot="end" [(ngModel)]="notifications" (ionChange)="toggleNotifications()"></ion-toggle>
+            </ion-item>
+            
+            <ion-item>
+              <ion-icon name="moon-outline" slot="start"></ion-icon>
+              <ion-label>Dark Mode</ion-label>
+              <ion-toggle slot="end" [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+            </ion-item>
+            
+            <ion-item button (click)="changeLanguage()">
+              <ion-icon name="language-outline" slot="start"></ion-icon>
+              <ion-label>Language</ion-label>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Support -->
+      <ion-card class="settings-card">
+        <ion-card-header>
+          <h3>Support</h3>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list lines="none">
+            <ion-item button (click)="getHelp()">
+              <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+              <ion-label>Help & Support</ion-label>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-item>
+            
+            <ion-item button (click)="aboutApp()">
+              <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+              <ion-label>About App</ion-label>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Logout Button -->
+      <ion-button expand="block" class="logout-btn" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Logout
+      </ion-button>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav-icons">
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToStats()">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToWorkouts()">
+        <ion-icon name="barbell-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToMerch()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon active" (click)="navigateToAccount()">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

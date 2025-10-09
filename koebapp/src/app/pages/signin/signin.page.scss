@@ -332,3 +332,267 @@ ion-content {
     }
   }
 }
+
+// Landscape: Make card horizontal layout
+@media (min-width: 568px) and (max-height: 700px) and (orientation: landscape) {
+  .auth-container {
+    padding: 16px;
+    overflow-y: auto;
+  }
+  
+  .auth-card {
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto;
+  }
+  
+  .auth-header {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    
+    .jersey-number {
+      font-size: 50px;
+      margin-bottom: 8px;
+    }
+    
+    h1 {
+      font-size: 26px;
+      margin: 8px 0;
+    }
+    
+    .tagline {
+      font-size: 13px;
+    }
+  }
+  
+  .auth-form {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    max-height: 500px;
+    
+    .form-item {
+      margin-bottom: 16px;
+      
+      ion-label {
+        font-size: 13px;
+      }
+    }
+    
+    .remember-forgot,
+    .terms-check {
+      margin-bottom: 16px;
+    }
+    
+    .submit-btn {
+      height: 48px;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+    
+    .toggle-auth {
+      margin-top: 18px;
+      
+      p {
+        font-size: 13px;
+      }
+    }
+    
+    .quote-section {
+      margin-top: 20px;
+      padding-top: 18px;
+      
+      .quote {
+        font-size: 11px;
+      }
+      
+      .author {
+        font-size: 10px;
+      }
+    }
+    
+    .champion-badge {
+      margin-top: 18px;
+      font-size: 13px;
+      
+      span:first-child,
+      span:last-child {
+        font-size: 20px;
+      }
+    }
+  }
+  
+  .background-overlay {
+    .number-bg {
+      font-size: 100px;
+      
+      &.left {
+        top: 30px;
+        left: 30px;
+      }
+      
+      &.right {
+        bottom: 30px;
+        right: 30px;
+      }
+    }
+    
+    .mamba-text {
+      font-size: 45px;
+      left: 30%;
+    }
+  }
+}
+
+// Very short landscape - keep vertical but compact
+@media (max-height: 500px) and (orientation: landscape) {
+  .auth-card {
+    flex-direction: column;
+    max-width: 450px;
+  }
+  
+  .auth-header {
+    flex: none;
+    padding: 16px;
+    
+    .jersey-number {
+      font-size: 32px;
+      margin-bottom: 4px;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 4px 0;
+    }
+    
+    .tagline {
+      font-size: 11px;
+    }
+  }
+  
+  .auth-form {
+    padding: 16px;
+    max-height: none;
+    
+    .form-item {
+      margin-bottom: 10px;
+    }
+    
+    .quote-section {
+      display: none;
+    }
+  }
+}
+
+// Mobile landscape (already in your code, but ensure it's there)
+@media (max-height: 700px) and (orientation: landscape) {
+  .auth-container {
+    padding: 12px;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+  
+  .background-overlay {
+    .number-bg {
+      font-size: 80px;
+      
+      &.left {
+        top: 20px;
+        left: 20px;
+      }
+      
+      &.right {
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+    
+    .mamba-text {
+      font-size: 35px;
+    }
+  }
+  
+  .auth-card {
+    margin: 20px auto;
+  }
+  
+  .auth-header {
+    padding: 20px;
+    
+    .jersey-number {
+      font-size: 40px;
+      margin-bottom: 6px;
+    }
+    
+    h1 {
+      font-size: 22px;
+      margin: 6px 0;
+    }
+    
+    .tagline {
+      font-size: 12px;
+    }
+  }
+  
+  .auth-form {
+    padding: 20px;
+    
+    .form-item {
+      margin-bottom: 14px;
+      --min-height: 50px;
+      
+      ion-label {
+        font-size: 13px;
+      }
+      
+      ion-input {
+        font-size: 14px;
+      }
+    }
+    
+    .remember-forgot,
+    .terms-check {
+      margin-bottom: 14px;
+      
+      ion-label {
+        font-size: 13px;
+      }
+    }
+    
+    .submit-btn {
+      height: 48px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    
+    .toggle-auth {
+      margin-top: 16px;
+      
+      p {
+        font-size: 13px;
+      }
+    }
+    
+    .quote-section {
+      margin-top: 20px;
+      padding-top: 16px;
+      
+      .quote {
+        font-size: 11px;
+        line-height: 1.4;
+      }
+      
+      .author {
+        font-size: 10px;
+      }
+    }
+    
+    .champion-badge {
+      margin-top: 16px;
+    }
+  }
+}
