@@ -51,4 +51,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./folder/folder.page').then((m) => m.FolderPage),
   },
+  {
+    path: 'merch',
+    loadComponent: () => import('./pages/merch/merch.page').then( m => m.MerchPage)
+  },
 ];

@@ -1,60 +1,198 @@
-
 ion-content {
-  --background: linear-gradient(135deg, #3a0071, #f8b400);
+  --background: #000000;
 }
 
-.center-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+// Main Screen (Get Started)
+.main-screen {
+  --background: linear-gradient(135deg, #000000 0%, #552583 50%, #000000 100%);
+  
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: clamp(20px, 5vw, 40px);
+  }
+
+  .welcome-section {
+    text-align: center;
+    margin-bottom: clamp(40px, 10vw, 60px);
+    animation: fadeIn 1s ease-out;
+
+    .mamba-logo-container {
+      margin-bottom: clamp(20px, 5vw, 30px);
+      
+      .static-logo {
+        width: clamp(120px, 30vw, 160px);
+        height: clamp(120px, 30vw, 160px);
+        object-fit: contain;
+        filter: drop-shadow(0 0 20px #FDB927);
+        animation: float 3s ease-in-out infinite;
+      }
+    }
+
+    .welcome-title {
+      font-size: clamp(48px, 12vw, 64px);
+      font-weight: 900;
+      color: white;
+      margin: 0 0 clamp(8px, 2vw, 12px) 0;
+      letter-spacing: clamp(4px, 1vw, 8px);
+      text-shadow: 0 0 30px rgba(253, 185, 39, 0.5);
+    }
+
+    .welcome-subtitle {
+      font-size: clamp(14px, 3.5vw, 18px);
+      font-weight: 700;
+      color: #FDB927;
+      margin: 0 0 clamp(16px, 4vw, 24px) 0;
+      letter-spacing: clamp(3px, 0.7vw, 6px);
+    }
+
+    .welcome-description {
+      font-size: clamp(14px, 3.5vw, 16px);
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+      font-style: italic;
+    }
+  }
+
+  .start-btn {
+    --background: linear-gradient(90deg, #552583, #FDB927);
+    --color: #ffffff;
+    font-weight: 700;
+    border-radius: 50px;
+    font-size: clamp(16px, 4vw, 18px);
+    padding: clamp(12px, 3vw, 16px) clamp(32px, 8vw, 48px);
+    box-shadow: 0 8px 32px rgba(253, 185, 39, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    ion-icon {
+      margin-left: clamp(8px, 2vw, 12px);
+      font-size: clamp(18px, 4.5vw, 20px);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:hover {
+      box-shadow: 0 12px 40px rgba(253, 185, 39, 0.6);
+    }
+  }
 }
 
-.start-btn {
-  --background: #f8b400;
-  --color: #000;
-  font-weight: bold;
-  border-radius: 22px;
-  font-size: 1.2rem;
-  padding: 12px 22px;
-  box-shadow: 0 0 20px rgba(248, 180, 0, 0.6);
-  transition: transform 0.2s;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.start-btn:active {
-  transform: scale(0.95);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
+// Loading Screen
 .loading-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  text-align: center;
+  --background: linear-gradient(135deg, #000000 0%, #552583 50%, #000000 100%);
+  
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: clamp(20px, 5vw, 40px);
+    position: relative;
+  }
 }
 
+// Snake Pattern Background
+.snake-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  overflow: hidden;
+  
+  .scale {
+    position: absolute;
+    width: clamp(60px, 15vw, 100px);
+    height: clamp(60px, 15vw, 100px);
+    background: radial-gradient(circle, rgba(253, 185, 39, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatScale 6s infinite ease-in-out;
+    
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        left: random(100) * 1%;
+        top: random(100) * 1%;
+        animation-delay: #{$i * 0.4}s;
+        animation-duration: #{6 + random(3)}s;
+      }
+    }
+  }
+}
+
+@keyframes floatScale {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(random(40) - 20px, random(40) - 20px) scale(1.3);
+    opacity: 0.3;
+  }
+}
+
+// Kobe Loader
 .kobe-loader {
   position: relative;
-  width: 130px; 
-  height: 130px;
+  width: clamp(120px, 30vw, 150px);
+  height: clamp(120px, 30vw, 150px);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: clamp(30px, 7.5vw, 40px);
+  z-index: 10;
+}
+
+.light-ring,
+.light-ring-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  animation: rotateRing 2s linear infinite;
 }
 
 .light-ring {
-  position: absolute;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-top: 3px solid #f8b400;
-  border-right: 3px solid #f8b400;
+  border-top: 3px solid #FDB927;
+  border-right: 3px solid #FDB927;
   filter: blur(2px);
-  animation: rotateRing 2s linear infinite;
   opacity: 0.9;
+}
+
+.light-ring-2 {
+  border-bottom: 3px solid #552583;
+  border-left: 3px solid #552583;
+  filter: blur(2px);
+  opacity: 0.7;
+  animation-direction: reverse;
+  animation-duration: 3s;
 }
 
 @keyframes rotateRing {
@@ -67,28 +205,168 @@ ion-content {
 }
 
 .logo {
-  width: 160px; 
-  height: 160px;
+  width: clamp(140px, 35vw, 180px);
+  height: clamp(140px, 35vw, 180px);
   object-fit: contain;
-  filter: drop-shadow(0 0 18px #f8b400);
+  filter: drop-shadow(0 0 20px #FDB927);
   z-index: 2;
+  animation: logoPulse 2s ease-in-out infinite;
 }
 
-.loading-text {
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: #fff;
-  text-shadow: 0 0 8px #f8b400, 0 0 15px #ffcc00;
-  animation: glowPulse 9.5s ease-in-out infinite alternate;
-  margin-top: 24px;
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px #FDB927);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 30px #FDB927);
+  }
 }
 
-@keyframes glowPulse {
+// Loading Text Container
+.loading-text-container {
+  z-index: 10;
+  margin-bottom: clamp(24px, 6vw, 32px);
+
+  .snake-icon {
+    font-size: clamp(32px, 8vw, 48px);
+    margin-bottom: clamp(12px, 3vw, 16px);
+    animation: wiggle 2s ease-in-out infinite;
+  }
+
+  .loading-text {
+    font-size: clamp(18px, 4.5vw, 24px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 10px #FDB927, 0 0 20px #FDB927;
+    animation: textGlow 1.5s ease-in-out infinite alternate;
+    margin-bottom: clamp(8px, 2vw, 12px);
+  }
+
+  .loading-subtext {
+    font-size: clamp(12px, 3vw, 14px);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes textGlow {
   from {
-    text-shadow: 0 0 8px #f8b400, 0 0 15px #ffcc00;
+    text-shadow: 0 0 10px #FDB927, 0 0 20px #FDB927;
   }
   to {
-    text-shadow: 0 0 15px #ffffff, 0 0 30px #f8b400;
+    text-shadow: 0 0 20px #ffffff, 0 0 40px #FDB927;
+  }
+}
+
+// Progress Dots
+.progress-dots {
+  display: flex;
+  gap: clamp(10px, 2.5vw, 16px);
+  z-index: 10;
+
+  .dot {
+    width: clamp(10px, 2.5vw, 14px);
+    height: clamp(10px, 2.5vw, 14px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+
+    &.active {
+      background: #FDB927;
+      box-shadow: 0 0 15px #FDB927;
+      transform: scale(1.2);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 375px) {
+  .main-screen .welcome-section {
+    margin-bottom: 30px;
+  }
+
+  .loading-text-container {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .kobe-loader {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 24px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+// Landscape orientation
+@media (max-height: 700px) and (orientation: landscape) {
+  .main-screen .welcome-section {
+    margin-bottom: 24px;
+
+    .mamba-logo-container {
+      margin-bottom: 12px;
+
+      .static-logo {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .welcome-title {
+      font-size: 36px;
+      margin-bottom: 6px;
+    }
+
+    .welcome-subtitle {
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .welcome-description {
+      font-size: 12px;
+    }
+  }
+
+  .kobe-loader {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .loading-text-container {
+    margin-bottom: 16px;
+
+    .snake-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .progress-dots {
+    gap: 8px;
   }
 }

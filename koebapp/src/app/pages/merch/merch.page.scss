@@ -1,0 +1,378 @@
+ion-content {
+  --background: #1a1a1a;
+}
+
+.cart-container {
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: clamp(12px, 3vw, 20px);
+  padding-bottom: 80px;
+}
+
+.cart-header {
+  padding: clamp(20px, 5vw, 40px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px);
+  
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
+    
+    .back-btn,
+    .close-btn {
+      --color: white;
+      --padding-start: 0;
+      --padding-end: 0;
+      
+      ion-icon {
+        font-size: clamp(24px, 6vw, 28px);
+      }
+    }
+    
+    h1 {
+      font-size: clamp(28px, 7vw, 32px);
+      font-weight: bold;
+      color: white;
+      margin: 0;
+    }
+  }
+  
+  .tagline {
+    color: #FDB927;
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.items-count {
+  text-align: center;
+  margin-bottom: clamp(16px, 4vw, 20px);
+  
+  span {
+    background: #2a2a2a;
+    color: #FDB927;
+    font-size: clamp(12px, 3vw, 14px);
+    font-weight: 700;
+    padding: clamp(6px, 1.5vw, 8px) clamp(16px, 4vw, 20px);
+    border-radius: 20px;
+  }
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 16px);
+  margin-bottom: clamp(20px, 5vw, 24px);
+}
+
+ion-card.cart-item-card {
+  margin: 0;
+  --background: #2a2a2a;
+  border-radius: clamp(16px, 4vw, 20px);
+  border: none;
+  box-shadow: none;
+  
+  ion-card-content {
+    padding: clamp(14px, 3.5vw, 16px);
+  }
+  
+  .item-layout {
+    display: flex;
+    gap: clamp(12px, 3vw, 16px);
+    align-items: center;
+    
+    .item-image {
+      width: clamp(80px, 20vw, 100px);
+      height: clamp(80px, 20vw, 100px);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: clamp(12px, 3vw, 14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      
+      img {
+        width: 85%;
+        height: 85%;
+        object-fit: contain;
+        transform: rotate(-15deg);
+      }
+    }
+    
+    .item-details {
+      flex: 1;
+      
+      h3 {
+        font-size: clamp(15px, 3.7vw, 18px);
+        font-weight: bold;
+        color: white;
+        margin: 0 0 clamp(6px, 1.5vw, 8px) 0;
+      }
+      
+      .item-price {
+        font-size: clamp(18px, 4.5vw, 22px);
+        font-weight: 900;
+        color: #FDB927;
+        margin: 0 0 clamp(10px, 2.5vw, 12px) 0;
+      }
+      
+      .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: clamp(8px, 2vw, 12px);
+        
+        ion-button {
+          --background: rgba(255, 255, 255, 0.1);
+          --color: white;
+          --border-radius: 8px;
+          --padding-start: clamp(8px, 2vw, 10px);
+          --padding-end: clamp(8px, 2vw, 10px);
+          height: clamp(30px, 7.5vw, 34px);
+          
+          ion-icon {
+            font-size: clamp(16px, 4vw, 18px);
+          }
+        }
+        
+        .quantity {
+          font-size: clamp(15px, 3.7vw, 18px);
+          font-weight: bold;
+          color: white;
+          min-width: clamp(30px, 7.5vw, 40px);
+          text-align: center;
+        }
+      }
+    }
+    
+    .remove-btn {
+      --color: #ef4444;
+      --padding-start: 8px;
+      --padding-end: 8px;
+      flex-shrink: 0;
+      
+      ion-icon {
+        font-size: clamp(20px, 5vw, 24px);
+      }
+    }
+  }
+}
+
+ion-card.summary-card {
+  margin: 0 0 clamp(16px, 4vw, 20px) 0;
+  --background: #2a2a2a;
+  border-radius: clamp(16px, 4vw, 20px);
+  border: none;
+  box-shadow: none;
+  
+  ion-card-header {
+    padding: clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(12px, 3vw, 14px) clamp(16px, 4vw, 20px);
+    
+    h3 {
+      font-size: clamp(16px, 4vw, 18px);
+      font-weight: bold;
+      color: white;
+      margin: 0;
+    }
+  }
+  
+  ion-card-content {
+    padding: 0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px);
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(10px, 2.5vw, 12px) 0;
+    font-size: clamp(13px, 3.2vw, 14px);
+    color: #ccc;
+    
+    &.total {
+      font-size: clamp(18px, 4.5vw, 20px);
+      font-weight: bold;
+      color: white;
+      
+      span:last-child {
+        color: #FDB927;
+      }
+    }
+  }
+  
+  .summary-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: clamp(10px, 2.5vw, 12px) 0;
+  }
+}
+
+.checkout-btn {
+  --background: linear-gradient(90deg, #552583, #FDB927);
+  --border-radius: clamp(12px, 3vw, 14px);
+  height: clamp(48px, 12vw, 52px);
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: bold;
+  margin-bottom: clamp(10px, 2.5vw, 12px);
+  box-shadow: none;
+  
+  ion-icon {
+    font-size: clamp(18px, 4.5vw, 20px);
+  }
+}
+
+.continue-btn {
+  --color: white;
+  --border-color: #666;
+  --border-radius: clamp(12px, 3vw, 14px);
+  height: clamp(44px, 11vw, 48px);
+  font-size: clamp(13px, 3.2vw, 14px);
+  font-weight: 600;
+  margin-bottom: clamp(20px, 5vw, 24px);
+}
+
+// Empty Cart
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 15vw, 80px) clamp(20px, 5vw, 40px);
+  text-align: center;
+  
+  .empty-icon {
+    font-size: clamp(80px, 20vw, 100px);
+    margin-bottom: clamp(20px, 5vw, 24px);
+    opacity: 0.5;
+  }
+  
+  h2 {
+    font-size: clamp(22px, 5.5vw, 26px);
+    font-weight: bold;
+    color: white;
+    margin: 0 0 clamp(10px, 2.5vw, 12px) 0;
+  }
+  
+  p {
+    font-size: clamp(14px, 3.5vw, 16px);
+    color: #999;
+    margin: 0 0 clamp(24px, 6vw, 32px) 0;
+  }
+  
+  .shop-btn {
+    --background: linear-gradient(90deg, #552583, #FDB927);
+    --border-radius: clamp(12px, 3vw, 14px);
+    height: clamp(46px, 11.5vw, 50px);
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: bold;
+    min-width: clamp(180px, 45vw, 220px);
+  }
+}
+
+.bottom-nav-icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 20px);
+  background: #1a1a1a;
+  border-top: 1px solid #2a2a2a;
+  z-index: 100;
+  
+  .nav-icon {
+    --color: #666;
+    --padding-start: 8px;
+    --padding-end: 8px;
+    
+    &.active {
+      --color: #FDB927;
+    }
+    
+    ion-icon {
+      font-size: clamp(22px, 5.5vw, 24px);
+    }
+  }
+}
+
+// iPhone SE and small phones
+@media (max-width: 375px) {
+  .cart-container {
+    padding: 12px;
+    padding-bottom: 75px;
+  }
+  
+  .cart-list {
+    gap: 10px;
+  }
+  
+  ion-card.cart-item-card {
+    .item-layout {
+      gap: 10px;
+      
+      .item-image {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+}
+
+// Very small phones
+@media (max-width: 360px) {
+  .cart-header {
+    padding: 16px 12px 12px 12px;
+  }
+  
+  .cart-list {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  ion-card.summary-card {
+    margin-bottom: 12px;
+  }
+}
+
+// Tablets
+@media (min-width: 600px) {
+  .cart-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// Landscape orientation
+@media (max-height: 700px) and (orientation: landscape) {
+  .cart-container {
+    padding: 10px 16px 70px 16px;
+  }
+  
+  .cart-header {
+    padding: 16px 20px 12px 20px;
+  }
+  
+  .cart-list {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  ion-card.cart-item-card {
+    .item-layout {
+      .item-image {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+  
+  .checkout-btn {
+    margin-bottom: 8px;
+  }
+  
+  .continue-btn {
+    margin-bottom: 16px;
+  }
+}

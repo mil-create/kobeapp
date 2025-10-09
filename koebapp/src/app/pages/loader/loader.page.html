@@ -1,15 +1,48 @@
 <ion-content *ngIf="!showLoading" class="main-screen">
   <div class="center-container">
-    <ion-button class="start-btn" (click)="startLoading()">Get Started</ion-button>
+    <div class="welcome-section">
+      <div class="mamba-logo-container">
+        <img src="assets/images/kobe-logo.png" alt="Kobe Logo" class="static-logo" />
+      </div>
+      <h1 class="welcome-title">MAMBA</h1>
+      <p class="welcome-subtitle">MENTALITY</p>
+      <p class="welcome-description">Transform your body, elevate your mind</p>
+    </div>
+    <ion-button class="start-btn" (click)="startLoading()">
+      Begin Your Journey
+      <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+    </ion-button>
   </div>
 </ion-content>
 
 <ion-content *ngIf="showLoading" class="loading-screen">
   <div class="center-container">
+    
+    <!-- Animated Snake Scales Background -->
+    <div class="snake-pattern">
+      <div class="scale" *ngFor="let scale of [1,2,3,4,5,6,7,8]"></div>
+    </div>
+
+    <!-- Logo with Ring Animation -->
     <div class="kobe-loader">
       <div class="light-ring"></div>
+      <div class="light-ring-2"></div>
       <img src="assets/images/kobe-logo.png" alt="Kobe Logo" class="logo" />
     </div>
-    <div class="loading-text">{{ displayText }}</div>
+
+    <!-- Transformation Text -->
+    <div class="loading-text-container">
+      <div class="snake-icon">🐍</div>
+      <div class="loading-text">{{ displayText }}</div>
+      <div class="loading-subtext">{{ subText }}</div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-dots">
+      <div class="dot" [class.active]="progressStep >= 1"></div>
+      <div class="dot" [class.active]="progressStep >= 2"></div>
+      <div class="dot" [class.active]="progressStep >= 3"></div>
+    </div>
+
   </div>
 </ion-content>

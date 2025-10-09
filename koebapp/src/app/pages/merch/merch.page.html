@@ -1,13 +1,150 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>merch</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">merch</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="cart-container">
+    
+    <!-- Header -->
+    <div class="cart-header">
+      <div class="header-top">
+        <ion-button fill="clear" class="back-btn" (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+        <h1>Your Cart</h1>
+        <ion-button fill="clear" class="close-btn" (click)="goBack()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <p class="tagline">MAMBA MERCH COLLECTION</p>
+    </div>
+
+    <!-- Cart Items -->
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      
+      <!-- Items Count -->
+      <div class="items-count">
+        <span>{{ cartItems.length }} {{ cartItems.length === 1 ? 'Item' : 'Items' }}</span>
+      </div>
+
+      <!-- Cart List -->
+      <div class="cart-list">
+        <ion-card 
+          class="cart-item-card" 
+          *ngFor="let item of cartItems; let i = index">
+          <ion-card-content>
+            <div class="item-layout">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+              </div>
+              
+              <div class="item-details">
+                <h3>{{ item.name }}</h3>
+                <p class="item-price">${{ item.price | number:'1.2-2' }}</p>
+                
+                <div class="quantity-controls">
+                  <ion-button 
+                    fill="clear" 
+                    size="small"
+                    (click)="decreaseQuantity(i)">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-button>
+                  <span class="quantity">{{ item.quantity }}</span>
+                  <ion-button 
+                    fill="clear" 
+                    size="small"
+                    (click)="increaseQuantity(i)">
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+
+              <ion-button 
+                fill="clear" 
+                class="remove-btn"
+                (click)="removeItem(i)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <!-- Order Summary -->
+      <ion-card class="summary-card">
+        <ion-card-header>
+          <h3>Order Summary</h3>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>${{ total | number:'1.2-2' }}</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>$15.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Tax</span>
+            <span>${{ (total * 0.08) | number:'1.2-2' }}</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>${{ (total + 15 + (total * 0.08)) | number:'1.2-2' }}</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Checkout Button -->
+      <ion-button 
+        expand="block" 
+        class="checkout-btn"
+        (click)="checkout()">
+        Proceed to Checkout
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+
+      <!-- Continue Shopping -->
+      <ion-button 
+        expand="block" 
+        fill="outline"
+        class="continue-btn"
+        (click)="goBack()">
+        Continue Shopping
+      </ion-button>
+
+    </div>
+
+    <!-- Empty Cart -->
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <div class="empty-icon">🛒</div>
+        <h2>Your Cart is Empty</h2>
+        <p>Add some Mamba Merch to get started!</p>
+        <ion-button 
+          class="shop-btn"
+          (click)="goBack()">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          Start Shopping
+        </ion-button>
+      </div>
+    </ng-template>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav-icons">
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToStats()">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToWorkouts()">
+        <ion-icon name="barbell-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon active" (click)="navigateToMerch()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" class="nav-icon" (click)="navigateToAccount()">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
 </ion-content>
